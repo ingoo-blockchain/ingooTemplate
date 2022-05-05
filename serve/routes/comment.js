@@ -50,9 +50,8 @@ router.post('/modify/:id', async (req,res)=>{
     const { id } = req.params
     const { content } = req.body
     try {
-        const comment = await Comment.update({ content },{
-            where:{ id }
-        })
+        const [idx] = await Comment.update( { content }, { where:{ id } })
+        const comment = await Comment.findOne({ where:{id:idx} })
 
         res.json({
             result:comment
@@ -72,6 +71,10 @@ router.post('/delete/:id', async (req,res)=>{
             where: {
                 id
             }
+        })
+
+        res.json({
+            result:comment
         })
     } catch (e) {
         res.status(500).json({

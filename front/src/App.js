@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Link, Routes, Route} from 'react-router-dom'
+import Comment from './Pages/Comment'
+import Counter from './Pages/Counter'
+import Index from './Pages/Index'
+import Login from './Pages/Login'
+import Header from './Components/common/Header'
+import Footer from './Components/common/Footer'
+import Container from './Components/common/Container'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Header />
+        <Container>
+          <Routes>
+            <Route path="/" index element={<Index />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Counter" element={< Counter />} />
+            <Route path="/Comment" element={ <Comment />} />
+          </Routes>
+        </Container>
+      </Router>  
+      <Footer>
+        Copyright All right &copy; reserved
+      </Footer>
+    </>
   );
 }
 

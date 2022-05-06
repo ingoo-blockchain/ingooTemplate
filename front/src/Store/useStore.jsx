@@ -14,9 +14,6 @@ const enhancer = process.env.NODE_ENV === 'production'
 const store = createStore(rootReducer,enhancer) // rootReducer , enhancer
 sagaMiddleware.run(rootSaga) // sagas/index.js
 
-// npm install redux-saga
-// npm install axios
-
 const Store = ({children}) => {
     return (
         <Provider store={store}>

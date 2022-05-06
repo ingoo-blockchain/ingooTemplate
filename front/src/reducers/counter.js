@@ -1,3 +1,5 @@
+const {createAction, handleActions} = require('redux-actions')
+
 const initialState = {
     number: 0,
     loadding:false,

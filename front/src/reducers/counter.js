@@ -1,25 +1,72 @@
 const {createAction, handleActions} = require('redux-actions')
 
 const initialState = {
-    number:0
+    number: 0,
+    loadding:false,
+    error:null
 }
 
-export const UP = 'COUNTER/UP'
-export const UP_SUCCESS = 'COUNTER/UP_SUCCESS'
-export const UP_FAILURE = 'COUNTER/UP_FAILURE'
+const UP = 'COUNTER/UP_REQUEST'
+const DOWN = 'COUNTER/DOWN_REQUEST'
 
-export const DOWN = 'COUNTER/DOWN'
-export const DOWN_SUCCESS = 'COUNTER/DOWN_SUCCESS'
-export const DOWN_FAILURE = 'COUNTER/DOWN_FAILURE'
+/*
+    COUNTER/UP
+*/
 
-export const up = createAction(UP, payload => payload)
-export const down = createAction(DOWN, payload => payload)
+/*
+    COUNTER/UP_SUCCESS +1
+*/
 
-const counter = handleActions({
-        [UP]: (state,action) => ({ number:state.number + 1 }),
-        [DOWN]: (state,action) => ({ number:state.number - 1 })
-    },
-    initialState
-)
+/*
+    COUNTER/UP_FAULARE X
+*/
+
+export const up = (payload) => ({ type:UP,payload })
+export const down = (payload) => ({ type:DOWN,payload })
+
+const counter = (state = initialState, action) => {
+    console.log('REDUCER')
+    switch(action.type){
+        case "COUNTER/UP_REQUEST":
+            return {
+                ...state,
+                loadding:true,
+                error:null
+            }
+        case "COUNTER/UP_SUCCESS":
+            return {
+                ...state,
+                loadding:false,
+                number:state.number+1
+            }
+        case "COUNTER/UP_FAILURE":
+            return {
+                ...state,
+                loadding:false,
+                error:'접속에러같음!'
+            }
+
+        case "COUNTER/DOWN_REQUEST":
+            return {
+                ...state,
+                loadding:true,
+                error:null,
+            }
+        case "COUNTER/DOWN_SUCCESS":
+            return {
+                ...state,
+                loadding:false,
+                number:state.number-1
+            }
+        case "COUNTER/DOWN_FAULURE":
+            return {
+                ...state,
+                loadding:false,
+                error:'서버에서 에러났음'
+            }
+        default: 
+            return state
+    }
+}
 
 export default counter

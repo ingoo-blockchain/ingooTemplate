@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { createAction, handleActions } from 'redux-actions'
 import counter from './counter'
+import user from './user'
 
 // const initialState = {
 //     number:0
@@ -11,6 +12,9 @@ import counter from './counter'
 
 // export const up = createAction(UP)
 // export const down = createAction(DOWN)
+
+// console.log(up.toString()) function // COUNTER/UP
+
 
 // const rootReducer = handleActions({
 //         [UP]: (state, action) => ({ number: state.number+1 }),

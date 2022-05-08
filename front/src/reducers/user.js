@@ -11,9 +11,7 @@ const initialState = {
 }
 
 
-export const setLogin = createAction(types.setLogin)
-
-console.log(setLogin)
+export const setLogin = createAction('USER/LOGIN_REQUEST')
 
 const user = (state, action) => {
 

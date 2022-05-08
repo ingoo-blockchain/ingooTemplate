@@ -4,6 +4,12 @@ import rootReducer from '../reducers'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga' // redux -> object createSagaMiddleware()
 import rootSaga from '../sagas'
+// import usePersistedState from '../Hook/usePersistedState'
+
+
+import { persistStore } from "redux-persist"
+import { PersistGate } from "redux-persist/integration/react"
+
 
 const sagaMiddleware = createSagaMiddleware()
 const middleware = [sagaMiddleware]
@@ -14,10 +20,15 @@ const enhancer = process.env.NODE_ENV === 'production'
 const store = createStore(rootReducer,enhancer) // rootReducer , enhancer
 sagaMiddleware.run(rootSaga) // sagas/index.js
 
+
+ const persistor = persistStore(store)
+
 const Store = ({children}) => {
     return (
         <Provider store={store}>
-            {children}
+            <PersistGate loading={null} persistor={persistor}>
+                {children}
+            </PersistGate>
         </Provider>
     )
 }

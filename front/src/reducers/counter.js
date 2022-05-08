@@ -25,7 +25,6 @@ export const up = (payload) => ({ type:UP,payload })
 export const down = (payload) => ({ type:DOWN,payload })
 
 const counter = (state = initialState, action) => {
-    console.log('REDUCER')
     switch(action.type){
         case "COUNTER/UP_REQUEST":
             return {

@@ -1,31 +1,21 @@
-import { combineReducers } from "redux";
-import { createAction, handleActions } from 'redux-actions'
+import { combineReducers } from "redux"
+import { persistReducer } from "redux-persist"
+import storage from "redux-persist/lib/storage"
+
 import counter from './counter'
 import user from './user'
 
-// const initialState = {
-//     number:0
-// }
-
-// const UP = 'COUNTER/UP'
-// const DOWN = 'COUNTER/DOWN'
-
-// export const up = createAction(UP)
-// export const down = createAction(DOWN)
-
-// console.log(up.toString()) function // COUNTER/UP
-
-
-// const rootReducer = handleActions({
-//         [UP]: (state, action) => ({ number: state.number+1 }),
-//         [DOWN]: (state, action) => ({ number: state.number-1 })
-//     },
-//     initialState
-// )
+const persist = {
+    key: "user", 
+    storage, // 저장 방법 
+    whitelist: ["user"] // localstorage 에 저장할 내용
+}
 
 const rootReducer = combineReducers({
-    counter
+    counter,
+    user
 })
 
 
-export default rootReducer
+export default persistReducer(persist,rootReducer)
+

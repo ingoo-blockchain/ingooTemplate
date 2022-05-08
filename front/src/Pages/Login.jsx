@@ -5,12 +5,13 @@ import { StyledButton } from "../Components/form/buttons"
 import { useDispatch } from "react-redux"
 import useForm from '../Hook/useForm'
 import { validate } from '../utils/login'
+import { USER_LOGIN } from '../reducers/user'
 
 const Login = () => {
     const dispath = useDispatch()
     const initialState = { email:'', password:'' }
-    const onSubmit = (values) => { 
-        dispath({type:'USER/LOGIN_REQUEST'})
+    const onSubmit = (payload) => { 
+        dispath(USER_LOGIN.REQUEST({...payload}))
     }
     const {email,password, errors, submit, handleSubmit} = useForm(initialState,onSubmit,validate)
 

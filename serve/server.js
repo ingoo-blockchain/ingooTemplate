@@ -1,14 +1,24 @@
+require('dotenv').config()
 const express = require('express') 
 const { sequelize } = require('./models')
 const passport = require('passport')
 const passportConfig = require('./passport')
 const cookieParser = require('cookie-parser')
 const path = require('path')
+const cors = require('cors')
 const app = express()
+
 
 //variable
 const PORT = process.env.PORT || 3500
 const COOKIE_SECRET = process.env.COOKIE_SECRET || 'ingoo'
+
+//cors
+app.use(cors({
+    origin:['http://localhost:3000'],
+    credentials:true,
+}))
+
 
 // router
 const userRouter = require('./routes/user')

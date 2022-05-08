@@ -20,8 +20,7 @@ const enhancer = process.env.NODE_ENV === 'production'
 const store = createStore(rootReducer,enhancer) // rootReducer , enhancer
 sagaMiddleware.run(rootSaga) // sagas/index.js
 
-
- const persistor = persistStore(store)
+const persistor = persistStore(store)
 
 const Store = ({children}) => {
     return (

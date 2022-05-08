@@ -24,6 +24,7 @@ const createRequestActionTypes = (base) => {
     }, {});
 };
 
+
 export const USER_LOGIN = createRequestActionTypes('USER/LOGIN') 
 
 

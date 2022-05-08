@@ -10,8 +10,8 @@ export const validate = ({email,password}) => {
 
     if(!password){
         errors.password = "비밀번호가 입력되지 않았습니다."
-    } else if (password.length < 8) {
-        errors.password = "8자 이상의 패스워드를 사용해야 합니다."
+    } else if (password.length < 4) {
+        errors.password = "4자 이상의 패스워드를 사용해야 합니다."
     }
 
     return errors 

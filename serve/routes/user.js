@@ -56,7 +56,6 @@ router.post('/login', async (req,res)=> {
 
 router.post('/me',passport.authenticate('jwt', { session: false }) ,async (req,res)=>{
     // if(!user) return res.status(500).json({ result:null, message:'존재하지 않는 회원입니다.' })
-
     res.json({
         result:true,
         user:req.user

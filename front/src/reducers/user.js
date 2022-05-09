@@ -25,7 +25,8 @@ const createRequestActionTypes = (base) => {
 };
 
 
-export const USER_LOGIN = createRequestActionTypes('USER/LOGIN') 
+export const USER_LOGIN = createRequestActionTypes('USER/LOGIN')
+export const USER_LOGOUT = createRequestActionTypes('USER_LOGOUT') 
 
 
 const user = (state = initialState, action) => {
@@ -41,6 +42,10 @@ const user = (state = initialState, action) => {
             return {
                 ...state,
                 loadding:false,
+                me:{
+                    ...action.data.user
+                },
+                isLogin:action.data.result,
                 error:null
             }
         }
@@ -48,7 +53,18 @@ const user = (state = initialState, action) => {
             return {
                 ...state,
                 loadding:false,
-                error:action.payload,
+                error:action.data,
+            }
+        }
+        case USER_LOGOUT.REQUEST.toString():{
+            return {
+                ...state,
+                loadding:false,
+                isLogin:false,
+                me:{
+                    ...initialState.me
+                },
+                error:null,
             }
         }
         default:

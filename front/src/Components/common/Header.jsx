@@ -2,7 +2,8 @@ import styled from 'styled-components'
 import Responsive from './Responsive'
 import { StyledButton } from '../form/buttons'
 import Button from './Button'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { USER_LOGOUT } from '../../reducers/user'
 import { Link } from 'react-router-dom'
 
 const HeaderTemplate = styled.div`
@@ -42,6 +43,13 @@ const Spacer = styled.div`
 `
 
 const Header = () => {
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user)
+
+    const logout = () => {
+        dispatch(USER_LOGOUT.REQUEST())
+    }
+
     return (
         <>
         <HeaderTemplate>
@@ -59,9 +67,12 @@ const Header = () => {
                     <li>
                         <Link to="Comment">Comment</Link>
                     </li>
-                    <li>
-                        <Button to="/Login">로그인</Button>
-                    </li>
+                    {
+                        user.isLogin 
+                        ? <li><Button onClick={logout}>로그아웃</Button></li>
+                        : <li><Button to="/Login">로그인</Button></li>
+                    }
+                    
                 </ul>
             </Wrapper>
         </HeaderTemplate>

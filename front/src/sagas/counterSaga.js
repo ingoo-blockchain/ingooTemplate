@@ -1,5 +1,4 @@
-import { takeLatest, call, put, all, fork } from 'redux-saga/effects'
-import axios from 'axios'
+import { takeLatest, call, put } from 'redux-saga/effects'
 
 async function upAPI(payload){
     console.log(payload)

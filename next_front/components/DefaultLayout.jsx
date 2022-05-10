@@ -65,7 +65,6 @@ const DefaultLayout = ({ children }) => {
         <Layout>
             <Header>
                 <Menu theme="dark" mode="horizontal" items={items}></Menu>
-                
             </Header>
             <Content>
                 {children}
